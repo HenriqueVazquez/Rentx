@@ -10,15 +10,12 @@ export class CreateSpecificationController {
     const createSpecificationUseCase = container.resolve(
       CreateSpecificationUseCase
     );
-    try {
-      await createSpecificationUseCase.execute({
-        name,
-        description,
-      });
 
-      return response.status(201).send();
-    } catch (err) {
-      return response.status(400).json(err.message);
-    }
+    await createSpecificationUseCase.execute({
+      name,
+      description,
+    });
+
+    return response.status(201).send();
   }
 }
